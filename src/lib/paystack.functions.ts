@@ -57,7 +57,12 @@ export const updatePaystackSettings = createServerFn({ method: "POST" })
     });
     if (!isAdmin) throw new Error("Forbidden");
 
-    const update: Record<string, unknown> = { updated_by: context.userId };
+    const update: {
+      updated_by: string;
+      mode?: string;
+      public_key?: string;
+      secret_key?: string;
+    } = { updated_by: context.userId };
     if (typeof data.mode === "string") update.mode = data.mode;
     // Empty string = no change; only update when a non-empty value is provided.
     if (data.public_key && data.public_key.length > 10) update.public_key = data.public_key;
