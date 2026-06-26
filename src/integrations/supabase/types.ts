@@ -145,6 +145,33 @@ export type Database = {
           },
         ]
       }
+      paystack_settings: {
+        Row: {
+          id: number
+          mode: string
+          public_key: string | null
+          secret_key: string | null
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          id?: number
+          mode?: string
+          public_key?: string | null
+          secret_key?: string | null
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          id?: number
+          mode?: string
+          public_key?: string | null
+          secret_key?: string | null
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
       room_types: {
         Row: {
           amenities: string[]
