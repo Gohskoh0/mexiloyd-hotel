@@ -27,10 +27,10 @@ function AdminLayout() {
 
   const links = [
     { to: "/admin", label: "Overview", end: true },
-    { to: "/admin/bookings", label: "Bookings" },
-    { to: "/admin/rooms", label: "Rooms" },
-    { to: "/admin/payments", label: "Payments" },
-    { to: "/admin/settings", label: "Settings" },
+    { to: "/admin/bookings", label: "Bookings", end: false },
+    { to: "/admin/rooms", label: "Rooms", end: false },
+    { to: "/admin/payments", label: "Payments", end: false },
+    { to: "/admin/settings", label: "Settings", end: false },
   ] as const;
 
   return (

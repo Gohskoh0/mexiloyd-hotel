@@ -18,7 +18,8 @@ function BookingsPage() {
   const q = useQuery({ queryKey: ["admin-bookings"], queryFn: () => list() });
 
   const mut = useMutation({
-    mutationFn: (vars: Parameters<typeof update>[0]["data"]) => update({ data: vars }),
+    mutationFn: (vars: { id: string; status?: string; payment_status?: string; amount_paid?: number }) =>
+      update({ data: vars as never }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["admin-bookings"] }),
   });
 
