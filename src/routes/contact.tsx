@@ -1,12 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, useSettings } from "@/components/site-layout";
+import { Reveal } from "@/components/reveal";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — LakeWood Hotel" },
-      { name: "description", content: "Reach LakeWood Hotel reservations — address, phone, email, and directions." },
-      { property: "og:title", content: "Contact — LakeWood Hotel" },
+      { title: "Contact — Mexiloyd Hotel" },
+      { name: "description", content: "Reach Mexiloyd Hotel reservations — call +234 803 716 5381 or visit us at 10 Happyland Close, Okuruama, Port Harcourt." },
+      { property: "og:title", content: "Contact — Mexiloyd Hotel" },
     ],
   }),
   component: ContactPage,
@@ -14,50 +15,70 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const { data: settings } = useSettings();
+  const phone = settings?.phone ?? "+2348037165381";
+  const mapsQuery = encodeURIComponent(
+    `${settings?.address ?? "10 Happyland Close, Okuruama"}, ${settings?.city ?? "Port Harcourt"}`
+  );
   return (
     <SiteLayout>
-      <section className="container-page pt-12 pb-24 grid lg:grid-cols-2 gap-12">
-        <div>
+      <section className="container-page pt-16 pb-24 grid lg:grid-cols-2 gap-14">
+        <Reveal>
           <span className="eyebrow">Get in touch</span>
-          <h1 className="mt-3 text-5xl">Contact us</h1>
-          <p className="mt-5 text-muted-foreground">
-            For reservations, group bookings, or events, reach out and our team will respond within a few hours.
+          <h1 className="mt-3 text-5xl md:text-6xl">Contact us</h1>
+          <p className="mt-5 text-muted-foreground leading-relaxed max-w-md">
+            For reservations, group bookings, or directions — call us directly. Our front desk is staffed 24/7.
           </p>
-          <div className="mt-10 space-y-6">
+          <div className="mt-12 space-y-8">
             <div>
-              <div className="eyebrow mb-1">Address</div>
-              <p className="whitespace-pre-line">{settings?.address || "Address to be added"}
-                {settings?.city ? `\n${settings.city}` : ""}
-                {settings?.country ? `, ${settings.country}` : ""}
+              <div className="eyebrow mb-2">Address</div>
+              <p className="text-lg leading-relaxed">
+                {settings?.address || "10 Happyland Close, near Golf Estate, Okuruama"}
+                <br />
+                {settings?.city ?? "Port Harcourt"}, {settings?.country ?? "Rivers, Nigeria"}
               </p>
             </div>
             <div>
-              <div className="eyebrow mb-1">Phone</div>
-              <a href={`tel:${settings?.phone}`} className="hover:underline">{settings?.phone || "—"}</a>
-            </div>
-            <div>
-              <div className="eyebrow mb-1">Email</div>
-              <a href={`mailto:${settings?.email}`} className="hover:underline">{settings?.email}</a>
+              <div className="eyebrow mb-2">Phone</div>
+              <a href={`tel:${phone}`} className="font-display text-3xl hover:text-primary transition">
+                {phone}
+              </a>
             </div>
             {settings?.whatsapp && (
               <div>
-                <div className="eyebrow mb-1">WhatsApp</div>
-                <a href={`https://wa.me/${settings.whatsapp.replace(/\D/g, "")}`} className="hover:underline" target="_blank" rel="noreferrer">{settings.whatsapp}</a>
+                <div className="eyebrow mb-2">WhatsApp</div>
+                <a href={`https://wa.me/${settings.whatsapp.replace(/\D/g, "")}`} className="hover:text-primary transition" target="_blank" rel="noreferrer">
+                  Message us on WhatsApp →
+                </a>
               </div>
             )}
+            <div className="flex gap-8 pt-4 border-t border-border">
+              <div>
+                <div className="eyebrow mb-1">Check-in</div>
+                <div className="font-display text-2xl">{settings?.check_in_time ?? "14:00"}</div>
+              </div>
+              <div>
+                <div className="eyebrow mb-1">Check-out</div>
+                <div className="font-display text-2xl">{settings?.check_out_time ?? "12:00"}</div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="bg-sand rounded-2xl p-8">
-          <h2 className="text-2xl">Find us</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            {settings?.google_maps_url
-              ? <>Open in <a className="text-primary hover:underline" target="_blank" rel="noreferrer" href={settings.google_maps_url}>Google Maps</a></>
-              : "Map link will appear here once added in the admin dashboard."}
-          </p>
-          <div className="mt-6 aspect-square rounded-xl bg-card border border-border grid place-items-center text-muted-foreground text-sm">
-            Map preview
+        </Reveal>
+        <Reveal delay={0.15}>
+          <div className="rounded-2xl overflow-hidden shadow-lift aspect-square">
+            <iframe
+              title="Mexiloyd Hotel location"
+              src={`https://www.google.com/maps?q=${mapsQuery}&output=embed`}
+              className="w-full h-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
-        </div>
+          <a href={settings?.google_maps_url ?? `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
+             target="_blank" rel="noreferrer"
+             className="mt-4 inline-flex items-center gap-2 text-sm text-primary story-link">
+            Open in Google Maps →
+          </a>
+        </Reveal>
       </section>
     </SiteLayout>
   );

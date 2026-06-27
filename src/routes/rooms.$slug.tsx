@@ -97,7 +97,7 @@ function RoomDetail() {
       <section className="container-page pt-10 pb-6 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
         <div>
           <div className="aspect-[16/10] rounded-2xl overflow-hidden shadow-soft">
-            <img src={resolveRoomImage(room.images?.[0])} alt={room.name} width={1920} height={1200}
+            <img src={resolveRoomImage(room.images?.[0], room.slug)} alt={room.name} width={1920} height={1200}
               className="h-full w-full object-cover" />
           </div>
           <div className="mt-8">

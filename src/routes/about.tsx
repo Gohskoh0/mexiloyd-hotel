@@ -1,13 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, useSettings } from "@/components/site-layout";
-import heroImg from "@/assets/hero.jpg";
+import { Reveal } from "@/components/reveal";
+import hotelAsset from "@/assets/mexiloyd-hotel.jpg.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — LakeWood Hotel" },
-      { name: "description", content: "Our story, our setting, and what makes LakeWood Hotel a calm lakeside escape." },
-      { property: "og:title", content: "About — LakeWood Hotel" },
+      { title: "About — Mexiloyd Hotel" },
+      { name: "description", content: "The story behind Mexiloyd Hotel — a quiet, warm stay near Golf Estate, Port Harcourt." },
+      { property: "og:title", content: "About — Mexiloyd Hotel" },
+      { property: "og:image", content: hotelAsset.url },
     ],
   }),
   component: AboutPage,
@@ -17,36 +19,37 @@ function AboutPage() {
   const { data: settings } = useSettings();
   return (
     <SiteLayout>
-      <section className="container-page pt-12 pb-20 grid lg:grid-cols-2 gap-12 items-center">
-        <div>
+      <section className="container-page pt-16 pb-20 grid lg:grid-cols-2 gap-14 items-center">
+        <Reveal>
           <span className="eyebrow">Our story</span>
-          <h1 className="mt-3 text-5xl">A quiet hotel at the water's edge</h1>
-          <p className="mt-5 text-muted-foreground leading-relaxed">
-            {settings?.hotel_name ?? "LakeWood Hotel"} was built around a simple idea: that the best stays
-            feel less like a hotel and more like a long exhale. Mornings begin with mist over the lake,
-            afternoons drift between the terrace and the pool, and evenings end slowly over warm food and
-            quiet conversation.
+          <h1 className="mt-3 text-5xl md:text-6xl">A quiet hotel, close to the heart of Port Harcourt.</h1>
+          <p className="mt-6 text-muted-foreground leading-relaxed">
+            {settings?.hotel_name ?? "Mexiloyd"} was built around a simple idea: that the best stays
+            feel less like a hotel and more like a long exhale. Tucked away on Happyland Close near
+            Golf Estate, we sit just minutes from the city's rhythm — but far enough to rest properly.
           </p>
           <p className="mt-4 text-muted-foreground leading-relaxed">
-            Every room is finished with warm wood, soft sand-tone linens, and brass detail. Our team is small
+            Every room is finished with warm wood, soft linens, and brass detail. Our team is small
             and our service is personal — we'd rather know your name than your room number.
           </p>
-        </div>
-        <img src={heroImg} alt="Hotel at dusk" width={1920} height={1280} loading="lazy"
-          className="aspect-[4/5] w-full object-cover rounded-2xl shadow-soft" />
+        </Reveal>
+        <Reveal delay={0.15}>
+          <img src={hotelAsset.url} alt="Mexiloyd Hotel" loading="lazy"
+            className="aspect-[4/5] w-full object-cover rounded-2xl shadow-lift" />
+        </Reveal>
       </section>
 
-      <section className="bg-sand py-20">
-        <div className="container-page grid md:grid-cols-3 gap-8 text-center">
+      <section className="bg-sand py-24">
+        <div className="container-page grid md:grid-cols-3 gap-10">
           {[
             ["Warm hospitality", "A small, attentive team that remembers your preferences."],
-            ["Lakeside setting", "Direct views and easy access to the water from every wing."],
+            ["Quiet setting", "Tucked into a residential close, away from the city noise."],
             ["Honest comfort", "Quiet rooms, good beds, real food — nothing extra, nothing missing."],
-          ].map(([t, d]) => (
-            <div key={t}>
+          ].map(([t, d], i) => (
+            <Reveal key={t} delay={i * 0.1}>
               <h3 className="text-2xl">{t}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{d}</p>
-            </div>
+              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{d}</p>
+            </Reveal>
           ))}
         </div>
       </section>
