@@ -41,12 +41,12 @@ export function Header() {
       }`}
     >
       <div className="container-page flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="size-8 grid place-items-center rounded-full bg-primary text-primary-foreground font-display text-lg">
-            L
+        <Link to="/" className="flex items-center gap-2.5 group">
+          <span className="size-9 grid place-items-center rounded-full bg-primary text-primary-foreground font-display text-lg italic transition group-hover:bg-brass group-hover:text-brass-foreground">
+            M
           </span>
-          <span className="font-display text-xl tracking-tight">
-            {settings?.hotel_name ?? "LakeWood Hotel"}
+          <span className={`font-display text-xl tracking-tight transition ${scrolled ? "text-foreground" : "text-foreground"}`}>
+            {settings?.hotel_name ?? "Mexiloyd"}
           </span>
         </Link>
 
@@ -110,35 +110,45 @@ export function Header() {
 
 export function Footer() {
   const { data: settings } = useSettings();
+  const name = settings?.hotel_name ?? "Mexiloyd";
   return (
     <footer className="mt-24 border-t border-border bg-sand">
       <div className="container-page py-14 grid gap-10 md:grid-cols-4">
         <div className="md:col-span-2">
-          <div className="font-display text-2xl">{settings?.hotel_name ?? "LakeWood Hotel"}</div>
-          <p className="mt-3 text-sm text-muted-foreground max-w-sm">
-            {settings?.tagline ?? "Where the water meets warm hospitality."}
+          <div className="font-display text-3xl">{name}</div>
+          <p className="mt-3 text-sm text-muted-foreground max-w-sm italic">
+            {settings?.tagline ?? "A quiet retreat in the heart of Port Harcourt."}
           </p>
+          <div className="mt-5 flex gap-3 text-xs text-muted-foreground">
+            <span>Check-in {settings?.check_in_time ?? "14:00"}</span>
+            <span>·</span>
+            <span>Check-out {settings?.check_out_time ?? "12:00"}</span>
+          </div>
         </div>
         <div>
           <div className="eyebrow mb-3">Visit</div>
-          <p className="text-sm text-muted-foreground whitespace-pre-line">
-            {settings?.address || "Address to be added"}
+          <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
+            {settings?.address || "10 Happyland Close, near Golf Estate, Okuruama"}
             {settings?.city ? `\n${settings.city}` : ""}
             {settings?.country ? `, ${settings.country}` : ""}
           </p>
         </div>
         <div>
           <div className="eyebrow mb-3">Contact</div>
-          <p className="text-sm text-muted-foreground">
-            {settings?.phone || "Phone to be added"}
-            <br />
-            {settings?.email || "reservations@lakewoodhotel.com"}
-          </p>
+          <a href={`tel:${settings?.phone ?? "+2348037165381"}`} className="text-sm hover:text-primary transition block">
+            {settings?.phone || "+234 803 716 5381"}
+          </a>
+          {settings?.whatsapp && (
+            <a href={`https://wa.me/${settings.whatsapp.replace(/\D/g, "")}`} target="_blank" rel="noreferrer"
+              className="mt-1 text-sm text-muted-foreground hover:text-primary transition block">
+              WhatsApp
+            </a>
+          )}
         </div>
       </div>
       <div className="border-t border-border">
         <div className="container-page py-5 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
-          <span>© {new Date().getFullYear()} {settings?.hotel_name ?? "LakeWood Hotel"}. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} {name}. All rights reserved.</span>
           <Link to="/auth" className="hover:text-foreground">Staff sign in</Link>
         </div>
       </div>

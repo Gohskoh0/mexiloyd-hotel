@@ -8,10 +8,10 @@ import { formatMoney } from "@/lib/format";
 export const Route = createFileRoute("/rooms")({
   head: () => ({
     meta: [
-      { title: "Rooms & Suites — LakeWood Hotel" },
-      { name: "description", content: "Browse Lakeside Standard, Deluxe, and Executive Suite rooms at LakeWood Hotel. Real-time availability and secure booking." },
-      { property: "og:title", content: "Rooms & Suites — LakeWood Hotel" },
-      { property: "og:description", content: "Choose your lakeside room and reserve in seconds." },
+      { title: "Rooms & Suites — Mexiloyd Hotel" },
+      { name: "description", content: "Standard, Deluxe, and Executive Suite rooms at Mexiloyd Hotel, Port Harcourt. From ₦20,000 per night with real-time availability." },
+      { property: "og:title", content: "Rooms & Suites — Mexiloyd Hotel" },
+      { property: "og:description", content: "Comfortable rooms from ₦20,000 — book direct." },
     ],
   }),
   component: RoomsPage,
@@ -43,9 +43,9 @@ function RoomsPage() {
         {isLoading && <p className="text-muted-foreground">Loading rooms…</p>}
         {rooms?.map((r, i) => (
           <article key={r.id} className={`grid gap-8 md:grid-cols-2 items-center ${i % 2 ? "md:[direction:rtl]" : ""}`}>
-            <div className="md:[direction:ltr] aspect-[4/3] rounded-2xl overflow-hidden shadow-soft">
-              <img src={resolveRoomImage(r.images?.[0])} alt={r.name} width={1280} height={960} loading="lazy"
-                className="h-full w-full object-cover" />
+            <div className="md:[direction:ltr] aspect-[4/3] rounded-2xl overflow-hidden shadow-soft group">
+              <img src={resolveRoomImage(r.images?.[0], r.slug)} alt={r.name} width={1280} height={960} loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-[1.2s] group-hover:scale-105" />
             </div>
             <div className="md:[direction:ltr]">
               <div className="flex items-baseline justify-between gap-3">
