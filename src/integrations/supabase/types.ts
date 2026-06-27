@@ -17,13 +17,16 @@ export type Database = {
       app_settings: {
         Row: {
           address: string
+          check_in_time: string
+          check_out_time: string
           city: string
           country: string
           currency: string
           currency_symbol: string
           deposit_percent: number
-          email: string
+          email: string | null
           google_maps_url: string
+          hero_image_url: string | null
           hotel_name: string
           id: number
           phone: string
@@ -33,13 +36,16 @@ export type Database = {
         }
         Insert: {
           address?: string
+          check_in_time?: string
+          check_out_time?: string
           city?: string
           country?: string
           currency?: string
           currency_symbol?: string
           deposit_percent?: number
-          email?: string
+          email?: string | null
           google_maps_url?: string
+          hero_image_url?: string | null
           hotel_name?: string
           id?: number
           phone?: string
@@ -49,13 +55,16 @@ export type Database = {
         }
         Update: {
           address?: string
+          check_in_time?: string
+          check_out_time?: string
           city?: string
           country?: string
           currency?: string
           currency_symbol?: string
           deposit_percent?: number
-          email?: string
+          email?: string | null
           google_maps_url?: string
+          hero_image_url?: string | null
           hotel_name?: string
           id?: number
           phone?: string
