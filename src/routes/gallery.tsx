@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
-import { Reveal } from "@/components/reveal";
+import { Reveal, BrandPanel } from "@/components/reveal";
 import hotelAsset from "@/assets/mexiloyd-hotel.jpg.asset.json";
 
 export const Route = createFileRoute("/gallery")({
@@ -15,29 +15,43 @@ export const Route = createFileRoute("/gallery")({
   component: GalleryPage,
 });
 
+const tiles = [
+  { label: "Guest Rooms" },
+  { label: "The Suite" },
+  { label: "Dining" },
+  { label: "Front Desk" },
+  { label: "Bar & Lounge" },
+];
+
 function GalleryPage() {
-  const images = [
-    { src: hotelAsset.url, alt: "Mexiloyd Hotel exterior", h: "row-span-2" },
-    { src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1200&q=80", alt: "Deluxe room" },
-    { src: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=1200&q=80", alt: "Lobby seating" },
-    { src: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80", alt: "Executive suite", h: "row-span-2" },
-    { src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80", alt: "Restaurant" },
-    { src: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=80", alt: "Standard room" },
-  ];
   return (
     <SiteLayout>
       <section className="container-page pt-16 pb-8">
         <Reveal>
           <span className="eyebrow">Gallery</span>
           <h1 className="mt-3 text-5xl md:text-6xl">Around the hotel</h1>
+          <p className="mt-4 max-w-xl text-muted-foreground">
+            A quiet look at Mexiloyd — Port Harcourt. Fresh photography is being commissioned; in the
+            meantime, our façade and a set of editorial cards set the tone.
+          </p>
         </Reveal>
       </section>
+
       <section className="container-page pb-24">
-        <div className="grid grid-cols-2 md:grid-cols-3 auto-rows-[220px] md:auto-rows-[280px] gap-4">
-          {images.map((i, idx) => (
-            <Reveal key={idx} delay={idx * 0.06} className={`overflow-hidden rounded-2xl shadow-soft ${i.h ?? ""}`}>
-              <img src={i.src} alt={i.alt} loading="lazy"
-                className="h-full w-full object-cover hover:scale-110 transition duration-[1.2s]" />
+        <Reveal className="rounded-2xl overflow-hidden shadow-soft mb-6">
+          <img
+            src={hotelAsset.url}
+            alt="Mexiloyd Hotel façade"
+            width={1920}
+            height={1200}
+            loading="lazy"
+            className="w-full h-[60vh] object-cover"
+          />
+        </Reveal>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {tiles.map((t, idx) => (
+            <Reveal key={t.label} delay={idx * 0.06} className="rounded-2xl overflow-hidden shadow-soft">
+              <BrandPanel label={t.label} className="aspect-[4/3] w-full" />
             </Reveal>
           ))}
         </div>
