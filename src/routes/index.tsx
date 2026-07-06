@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteLayout, useSettings } from "@/components/site-layout";
-import { Reveal } from "@/components/reveal";
+import { Reveal, BrandPanel } from "@/components/reveal";
 import { resolveRoomImage } from "@/lib/room-images";
 import { formatMoney } from "@/lib/format";
 import hotelAsset from "@/assets/mexiloyd-hotel.jpg.asset.json";
@@ -142,10 +142,9 @@ function HomePage() {
           </div>
         </Reveal>
         <Reveal delay={0.15} className="grid grid-cols-2 gap-4">
-          <img src={lobby} alt="Lobby seating" loading="lazy"
+          <img src={hero} alt="Mexiloyd hotel façade" loading="lazy" width={800} height={1000}
             className="aspect-[4/5] w-full object-cover rounded-2xl shadow-soft" />
-          <img src={dining} alt="Restaurant interior" loading="lazy"
-            className="aspect-[4/5] w-full object-cover rounded-2xl shadow-soft mt-10" />
+          <BrandPanel label="Est. Port Harcourt" className="aspect-[4/5] w-full rounded-2xl shadow-soft mt-10" />
         </Reveal>
       </section>
 
