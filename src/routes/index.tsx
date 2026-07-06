@@ -4,12 +4,14 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteLayout, useSettings } from "@/components/site-layout";
-import { Reveal, BrandPanel } from "@/components/reveal";
+import { Reveal } from "@/components/reveal";
 import { resolveRoomImage } from "@/lib/room-images";
 import { formatMoney } from "@/lib/format";
-import hotelAsset from "@/assets/mexiloyd-hotel.jpg.asset.json";
+import ext1 from "@/assets/ext-1.jpg.asset.json";
+import ext2 from "@/assets/ext-2.jpg.asset.json";
+import room3 from "@/assets/room-3.jpg.asset.json";
 
-const hero = hotelAsset.url;
+const hero = ext1.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -142,9 +144,10 @@ function HomePage() {
           </div>
         </Reveal>
         <Reveal delay={0.15} className="grid grid-cols-2 gap-4">
-          <img src={hero} alt="Mexiloyd hotel façade" loading="lazy" width={800} height={1000}
+          <img src={ext2.url} alt="Mexiloyd hotel façade" loading="lazy" width={800} height={1000}
             className="aspect-[4/5] w-full object-cover rounded-2xl shadow-soft" />
-          <BrandPanel label="Est. Port Harcourt" className="aspect-[4/5] w-full rounded-2xl shadow-soft mt-10" />
+          <img src={room3.url} alt="A Mexiloyd guest room" loading="lazy" width={800} height={1000}
+            className="aspect-[4/5] w-full object-cover rounded-2xl shadow-soft mt-10" />
         </Reveal>
       </section>
 

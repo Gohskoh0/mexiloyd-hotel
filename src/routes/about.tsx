@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, useSettings } from "@/components/site-layout";
 import { Reveal } from "@/components/reveal";
-import hotelAsset from "@/assets/mexiloyd-hotel.jpg.asset.json";
+import ext2 from "@/assets/ext-2.jpg.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -9,7 +9,7 @@ export const Route = createFileRoute("/about")({
       { title: "About — Mexiloyd Hotel" },
       { name: "description", content: "The story behind Mexiloyd Hotel — a quiet, warm stay near Golf Estate, Port Harcourt." },
       { property: "og:title", content: "About — Mexiloyd Hotel" },
-      { property: "og:image", content: hotelAsset.url },
+      { property: "og:image", content: ext2.url },
     ],
   }),
   component: AboutPage,
@@ -34,7 +34,7 @@ function AboutPage() {
           </p>
         </Reveal>
         <Reveal delay={0.15}>
-          <img src={hotelAsset.url} alt="Mexiloyd Hotel" loading="lazy"
+          <img src={ext2.url} alt="Mexiloyd Hotel" loading="lazy"
             className="aspect-[4/5] w-full object-cover rounded-2xl shadow-lift" />
         </Reveal>
       </section>
