@@ -11,8 +11,8 @@ import { createBooking, checkAvailability } from "@/lib/bookings.functions";
 export const Route = createFileRoute("/rooms/$slug")({
   head: ({ params }) => ({
     meta: [
-      { title: `${params.slug.replace(/-/g, " ")} — LakeWood Hotel` },
-      { name: "description", content: "Reserve your room at LakeWood Hotel." },
+      { title: `${params.slug.replace(/-/g, " ")} — Mexiloyd Hotel` },
+      { name: "description", content: "Reserve your room at Mexiloyd Hotel, Port Harcourt." },
     ],
   }),
   component: RoomDetail,

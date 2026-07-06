@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
+import logoMark from "@/assets/logo-mark.png";
 
 export function useSettings() {
   return useQuery({
@@ -42,10 +43,14 @@ export function Header() {
     >
       <div className="container-page flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <span className="size-9 grid place-items-center rounded-full bg-primary text-primary-foreground font-display text-lg italic transition group-hover:bg-brass group-hover:text-brass-foreground">
-            M
-          </span>
-          <span className={`font-display text-xl tracking-tight transition ${scrolled ? "text-foreground" : "text-foreground"}`}>
+          <img
+            src={logoMark}
+            alt=""
+            width={40}
+            height={40}
+            className="size-9 object-contain transition group-hover:scale-105"
+          />
+          <span className="font-display text-xl tracking-tight text-foreground">
             {settings?.hotel_name ?? "Mexiloyd"}
           </span>
         </Link>
@@ -115,7 +120,10 @@ export function Footer() {
     <footer className="mt-24 border-t border-border bg-sand">
       <div className="container-page py-14 grid gap-10 md:grid-cols-4">
         <div className="md:col-span-2">
-          <div className="font-display text-3xl">{name}</div>
+          <div className="flex items-center gap-3">
+            <img src={logoMark} alt="" width={44} height={44} className="size-11 object-contain" />
+            <div className="font-display text-3xl">{name}</div>
+          </div>
           <p className="mt-3 text-sm text-muted-foreground max-w-sm italic">
             {settings?.tagline ?? "A quiet retreat in the heart of Port Harcourt."}
           </p>

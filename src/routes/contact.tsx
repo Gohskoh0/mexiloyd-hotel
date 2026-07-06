@@ -73,11 +73,24 @@ function ContactPage() {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
-          <a href={settings?.google_maps_url ?? `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
-             target="_blank" rel="noreferrer"
-             className="mt-4 inline-flex items-center gap-2 text-sm text-primary story-link">
-            Open in Google Maps →
-          </a>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <a
+              href={`https://www.google.com/maps/dir/?api=1&destination=${mapsQuery}`}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex h-11 items-center rounded-full bg-primary px-6 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition"
+            >
+              Get directions →
+            </a>
+            <a
+              href={settings?.google_maps_url ?? `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex h-11 items-center rounded-full border border-border px-6 text-sm hover:bg-secondary transition"
+            >
+              Open in Google Maps
+            </a>
+          </div>
         </Reveal>
       </section>
     </SiteLayout>
