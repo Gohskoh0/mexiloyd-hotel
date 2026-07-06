@@ -10,10 +10,6 @@ import { formatMoney } from "@/lib/format";
 import hotelAsset from "@/assets/mexiloyd-hotel.jpg.asset.json";
 
 const hero = hotelAsset.url;
-const lobby =
-  "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=1600&q=80";
-const dining =
-  "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80";
 
 export const Route = createFileRoute("/")({
   head: () => ({
